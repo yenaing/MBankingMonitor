@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="primefaces-override.css"/>
+    </f:facet>
+
+    <h:form id="mbankingsmsform" style="width: auto">
+        <h:outputText value="There are no lonked records in MBANKING_SMS table" rendered="#{empty mbankingsmsview.linkedmbankingSmsList}" style="font-size: 14px; color: #ffffff; font-weight: bold;"/>
+        <h:outputText value="MBANKING_SMS id_sms: #{mbankingsmsview.concreeteMbankingSms.id_sms}" rendered="#{not empty mbankingsmsview.linkedmbankingSmsList}" style="font-size: 14px; color: #ffffff; margin: 0 auto; font-weight: bold;"/>
+        <p:dataTable id="mbankingsmstable" var="t" value="#{mbankingsmsview.linkedmbankingSmsList}" scrollable="true"
+                     rendered="#{not empty mbankingsmsview.linkedmbankingSmsList}"
+                     styleClass="table-cell"
+                     tableStyleClass="table-cell"
+                     selectionMode="single"
+                     selection="#{mbankingsmsview.concreeteMbankingSms}"
+                     rowKey="#{t.id_sms}"
+                     rowClasses="#{mbankingsmsview.rowClass}" columnClasses="columnClass"
+                     rowStyleClass="#{  t.state eq '0' ? 'newSmsState' :
+                                            t.state eq '1' ? 'workerDoneState' :
+                                            t.state eq '2' ? 'receiverDoneState' :
+                                            t.state eq '3' ? 'inWorkingState' :
+                                            t.state eq '-1' ? 'notWorkedState' :
+                                            t.state eq '-2' ? 'notParsedWrongCommand' :
+                                            t.state eq '-3' ? 'notWorkedNoDataState' :
+                                            t.state eq '-4' ? 'errorResponseRegState' :
+                                            null}">
+
+            <p:column width="40">
+                <f:facet name="header">id_sms</f:facet>
+                <h:outputText value="#{t.id_sms}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">state</f:facet>
+                <h:outputText value="#{t.state}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">errCde</f:facet>
+                <h:outputText value="#{t.errCde}"/>
+            </p:column>
+
+            <p:column width="100">
+                <f:facet name="header">inSms</f:facet>
+                <h:outputText value="#{t.inSms}"/>
+            </p:column>
+
+            <p:column width="100">
+                <f:facet name="header">parsedSms</f:facet>
+                <h:outputText value="#{t.parsedSms}"/>
+            </p:column>
+
+            <p:column width="160">
+                <f:facet name="header">outSms</f:facet>
+                <h:outputText value="#{t.outSms}"/>
+            </p:column>
+
+            <p:column width="150">
+                <f:facet name="header">panid</f:facet>
+                <h:outputText value="#{t.panid}"/>
+            </p:column>
+
+            <p:column width="120">
+                <f:facet name="header">phone</f:facet>
+                <h:outputText value="#{t.phone}"/>
+            </p:column>
+
+            <p:column width="120">
+                <f:facet name="header">smsDate</f:facet>
+                <h:outputText value="#{t.smsDate}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">origIdSms</f:facet>
+                <h:outputText value="#{t.originalIdSms}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">fiid</f:facet>
+                <h:outputText value="#{t.fiid}"/>
+            </p:column>
+
+            <p:column width="120">
+                <f:facet name="header">account</f:facet>
+                <h:outputText value="#{t.account}"/>
+            </p:column>
+
+            <p:column width="20">
+                <f:facet name="header">cardStat</f:facet>
+                <h:outputText value="#{t.cardStat}"/>
+            </p:column>
+
+            <p:column width="40"><f:facet name="header">expdate</f:facet>
+                <h:outputText value="#{t.expdate}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">oprtnCde</f:facet>
+                <h:outputText value="#{t.oprtnCde}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">flId</f:facet>
+                <h:outputText value="#{t.flId}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">mbr</f:facet>
+                <h:outputText value="#{t.mbr}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">newCardStat</f:facet>
+                <h:outputText value="#{t.newCardStat}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">fhmRespCde</f:facet>
+                <h:outputText value="#{t.fhmRespCde}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">accountType</f:facet>
+                <h:outputText value="#{t.accountType}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">panCr</f:facet>
+                <h:outputText value="#{t.panCr}"/>
+            </p:column>
+
+            <p:column width="140">
+                <f:facet name="header">waitUntil</f:facet>
+                <h:outputText value="#{t.waitUntil}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">attempt</f:facet>
+                <h:outputText value="#{t.attempt}"/>
+            </p:column>
+
+            <p:column width="160">
+                <f:facet name="header">panmask</f:facet>
+                <h:outputText value="#{t.panmask}"/>
+            </p:column>
+
+            <p:column width="40">
+                <f:facet name="header">opExtractCode</f:facet>
+                <h:outputText value="#{t.operationExtractCode}"/>
+            </p:column>
+        </p:dataTable>
+
+        <p:separator />
+
+        <h:panelGroup>
+            <p:commandButton value="Close" ajax="false" action="#{mbankingsmsview.close}" immediate="true" icon="ui-icon-close"/>
+        </h:panelGroup>
+
+    </h:form>
+</h:body>
+</html>

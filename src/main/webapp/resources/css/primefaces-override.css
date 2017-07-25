@@ -1,0 +1,194 @@
+.ui-layout-unit-header-title {
+    font-size: 14px;
+}
+
+.ui-layout-container{
+    /*height: 100%;*/
+    background-color: #71798a;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+.root-template-block {
+    height: 100%;
+}
+
+/********************css for dialog window****************************/
+.ui-dialog .ui-dialog-titlebar {
+    padding: .4em .4em .4em 1em;
+    position: relative;
+    border: 0px;
+    background-color: #ecffdf;
+}
+
+/********************css for TabView element in dialog window****************************/
+.ui-tabs.ui-tabs-top > .ui-tabs-nav {
+    padding: .2em .2em 0;
+    background-color: aliceblue;
+    font-size: 12px;
+}
+.ui-tabs.ui-tabs-top .ui-tabs-nav li.ui-tabs-selected {
+    border-bottom: 0;
+    background: #5eff4f;
+}
+/********************css for dataTable element in dialog window****************************/
+.ui-widget-content.table-cell {
+    color: #4A5381;
+}
+
+
+.ui-widget-content {
+    border: 1px solid #A8A8A8;
+    background: #505b6d none repeat scroll 0% 0%;
+    color: #e5e5b0;
+    /*background: rgb(113, 121, 138) none repeat scroll 0% 0%;*/
+}
+
+/*свойства header-а*/
+.ui-layout-north, .ui-layout-pane-north{
+    min-height: 100px;
+    background-color: #505b6d;
+}
+
+.ui-panelgrid, .ui-panelgrid td{
+    font-size: 12px;
+    background-color: #4A5381;
+    color: #fffe4e;
+    font-weight: 600;
+}
+
+
+.table-cell, .table-cell th{
+    white-space: nowrap;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    table-layout:auto;
+    width:100%;
+    border: 1px solid white;
+    border-spacing: 0px 0px;
+    color:#ffffff;
+    border-collapse: collapse;
+}
+
+.table-cell, .table-cell th{
+    color:navy;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+.table-header {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    background: #e5e5b0;
+    color:navy;
+    border: 1px solid black;
+    padding: 4px;
+    border-collapse: collapse;
+}
+
+
+
+
+.newSmsState {
+    background: snow;
+    color: #8a8a8a;
+    text-align: center;
+}
+
+.workerDoneState {
+    background: #c3c3c3;
+    color: #000000;
+    text-align: center;
+}
+
+.receiverDoneState {
+    background: #b1c355;
+    color: #2a129f;
+    text-align: center;
+}
+
+.inWorkingState {
+    background: #c3a549;
+    color: #2a129f;
+    text-align: center;
+}
+
+.notWorkedState {
+    background: #1fae1d;
+    color: #e5f1dd;
+    text-align: center;
+}
+
+.notParsedWrongCommand {
+    background: #ff8e0c;
+    color: #2a129f;
+    text-align: center;
+}
+
+.notWorkedNoDataState {
+    background: #ff1013;
+    color: #2a129f;
+    text-align: center;
+}
+
+.errorResponseRegState {
+    background: #150315;
+    color: #fff18e;
+}
+
+
+.columnClass{
+    width: auto;
+    padding: 4px;
+}
+/******/
+
+.ui-fieldset{
+    background-color: #2a129f;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px;
+}
+
+.menu .ui-selectonemenu-label {
+    background: #2a129f;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+}
+.panel .ui-selectonemenu-list {
+    background: #2a129f;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+}
+.ui-button {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    text-decoration: none !important;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    height: auto;
+    margin: 0 auto;
+    font-size: 10px;
+}
+
+.ui-button-text-only .ui-button-text {
+    padding: 0.2em 0.2em;
+    font-size: 12px;
+    background-color: yellow;
+}
+
+

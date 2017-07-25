@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>
+        <ui:insert name="windowTitle">
+            <h:outputLabel>Template Title message</h:outputLabel>
+        </ui:insert>
+    </title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <div class="root-template-block">
+
+        <div class="my-header-class">
+            <ui:insert name="header">
+                <h:outputLabel>Default template header</h:outputLabel>
+            </ui:insert>
+        </div>
+
+        <div class="my-logincontent-class">
+            <ui:insert name="content" >
+                <h:outputLabel>Default template content</h:outputLabel>
+            </ui:insert>
+        </div>
+    </div>
+</h:body>
+</html>

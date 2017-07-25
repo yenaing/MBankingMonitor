@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/api">
+  <Resource auth="Container" 
+		driverClassName="oracle.jdbc.OracleDriver" 
+		logAbandoned="true" 
+		maxActive="20" 
+		maxIdle="0" 
+		maxWait="3000" 
+		name="jdbc/infra" 
+		username="sa"
+		password="123456" 
+		removeAbandoned="true" 
+		removeAbandonedTimeout="60" 
+		testOnBorrow="true" 
+		testOnCreate="true" 
+		testOnReturn="true" 
+		testWhileIdle="true" 
+		type="javax.sql.DataSource" 
+		url="jdbc:oracle:thin:@//test:1521/testrkc"/>
+  <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" logAbandoned="true" maxActive="20" maxIdle="0" maxWait="3000" name="jdbc/sms" password="ext_mbanking" removeAbandoned="true" removeAbandonedTimeout="60" testOnBorrow="true" testOnCreate="true" testOnReturn="true" testWhileIdle="true" type="javax.sql.DataSource" url="jdbc:oracle:thin:@//test:1521/testrkc" username="sa"/>
+  <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" logAbandoned="true" maxActive="20" maxIdle="0" maxWait="3000" name="jdbc/txonline" password="EXT_TXONLINE" removeAbandoned="true" removeAbandonedTimeout="60" testOnBorrow="true" testOnCreate="true" testOnReturn="true" testWhileIdle="true" type="javax.sql.DataSource" url="jdbc:oracle:thin:@//test:1521/testrkc" username="sa"/>
+
+</Context>

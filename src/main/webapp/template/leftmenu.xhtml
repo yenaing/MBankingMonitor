@@ -1,0 +1,13 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form>
+        <p:menu style="font-size: 11px; color: snow; background-color: #dddddd">
+            <p:submenu label="Navigations">
+                <p:menuitem value="MTransfer Mon" url="http://localhost:8181/MTMon/login.xhtml" icon="ui-icon-home" />
+                <p:separator/>
+                <p:menuitem value="Logout" outcome="/login" icon="ui-icon-close"/>
+            </p:submenu>
+        </p:menu>
+    </h:form>
+</ui:composition>

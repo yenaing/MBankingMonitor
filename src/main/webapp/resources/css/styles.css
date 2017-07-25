@@ -1,0 +1,48 @@
+* {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.my-header-class {
+    height: 100px;
+    /*line-height: 100px;*/
+    text-align: center;
+    background: #7d8080;
+    color: snow;
+}
+
+.my-leftmenu-class {
+    width: 220px;
+    height: 100%;
+    float: left;
+}
+
+.my-logincontent-class {
+    margin: 0 auto;
+    height: 100%;
+}
+
+.my-content-class {
+    height: auto;
+    margin-left: 225px;
+    height:100%;
+    overflow: auto;
+}
+
+.error-class {
+    color: crimson;
+}
+
+#loginForm {
+    width: 360px;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+

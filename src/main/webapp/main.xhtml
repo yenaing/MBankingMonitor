@@ -1,0 +1,234 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/masterLayout.xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        >
+    <ui:define name="title">
+
+    </ui:define>
+
+    <ui:define name="content">
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="primefaces-override.css"/>
+        </f:facet>
+
+        <h:form>
+            <p:panelGrid columns="7">
+                <p:commandButton value="Reload" action="#{mbankingsmsview.reloadData}" icon="ui-icon-refresh"  ajax="false" ></p:commandButton>
+                <h:outputLabel>Date From: </h:outputLabel>
+                <p:calendar value="#{mbankingsmsview.dateyesterday}" id="calYesterday" styleClass="calendarClass"
+                            locale="ru"/>
+                <h:outputLabel>Date To: </h:outputLabel>
+                <p:calendar value="#{mbankingsmsview.datenow}" id="calToday" styleClass="calendarClass" locale="ru" />
+                <p:fieldset>
+                    <p:selectBooleanCheckbox value="#{mbankingsmsview.newSmsState}" itemLabel="newSms"/>
+                    <h:outputText value="&#160;"/>
+                    <p:selectBooleanCheckbox value="#{mbankingsmsview.workerDoneState}" itemLabel="wrkrDone"/>
+                    <h:outputText value="&#160;"/>
+                    <p:selectBooleanCheckbox value="#{mbankingsmsview.receiverDoneState}" itemLabel="rcvrDone"/>
+                    <h:outputText value="&#160;"/>
+                    <p:selectBooleanCheckbox value="#{mbankingsmsview.inWorkingState}" itemLabel="inWork"/>
+                    <h:outputText value="&#160;"/>
+                    <p:selectBooleanCheckbox value="#{mbankingsmsview.notWorkedState}" itemLabel="notWorked"/>
+                    <h:outputText value="&#160;"/>
+                    <p:selectBooleanCheckbox value="#{mbankingsmsview.notParsedWrongCommand}" itemLabel="notParsed"/>
+                    <h:outputText value="&#160;"/>
+                    <p:selectBooleanCheckbox value="#{mbankingsmsview.notWorkedNoDataState}" itemLabel="noData"/>
+                    <h:outputText value="&#160;"/>
+                    <p:selectBooleanCheckbox value="#{mbankingsmsview.errorResponseRegState}" itemLabel="errResp"/>
+                    <h:outputText value="&#160;"/>
+                    <h:outputText value="&#160;"/>
+                    <p:selectOneMenu id="console" value="#{mbankingsmsview.selectOrder}" style="width:125px"
+                                     styleClass="menu"
+                                     panelStyleClass="panel">
+                        <f:selectItem itemLabel="Desc" itemValue="desc"/>
+                        <f:selectItem itemLabel="Asc" itemValue="asc"/>
+                    </p:selectOneMenu>
+                </p:fieldset>
+                <p:commandButton value="Make Query" action="#{mbankingsmsview.getBetweenDatesList}" icon="ui-icon-folder-open" ajax="false" ></p:commandButton>
+            </p:panelGrid>
+
+            <h:outputText value="MBanking_SMS table is empty!" rendered="#{empty mbankingsmsview.mbankingSmsList}"
+                          style="font-size: 14px; color: #ffffff;"/>
+
+            <p:contextMenu for="mbankingsmstable">
+                <p:menuitem value="View record detail" update="mbankingsmsTableDetail" icon="ui-icon-search" oncomplete="PF('mbankingsmsTableDialog').show()" style="color: yellow; font-size: 12px;"/>
+                <p:menuitem value="Linked recods" actionListener="#{mbankingsmsview.openLinkedRecords}" ajax="false" icon="ui-icon-extlink" style="color: yellow; font-size: 12px;"/>
+            </p:contextMenu>
+
+            <p:growl id="growl" showDetail="true" sticky="false" />
+
+            <p:dataTable id="mbankingsmstable" var="t" value="#{mbankingsmsview.mbankingSmsList}" scrollable="true"
+                         rendered="#{not empty mbankingsmsview.mbankingSmsList}"
+                         styleClass="table-cell"
+                         tableStyleClass="table-cell"
+                         selectionMode="single"
+                         selection="#{mbankingsmsview.concreeteMbankingSms}"
+                         rowKey="#{t.id_sms}"
+                         rowClasses="#{mbankingsmsview.rowClass}" columnClasses="columnClass"
+                         rowStyleClass="#{  t.state eq '0' ? 'newSmsState' :
+                                            t.state eq '1' ? 'workerDoneState' :
+                                            t.state eq '2' ? 'receiverDoneState' :
+                                            t.state eq '3' ? 'inWorkingState' :
+                                            t.state eq '-1' ? 'notWorkedState' :
+                                            t.state eq '-2' ? 'notParsedWrongCommand' :
+                                            t.state eq '-3' ? 'notWorkedNoDataState' :
+                                            t.state eq '-4' ? 'errorResponseRegState' :
+                                            null}">
+
+                <p:column width="40">
+                    <f:facet name="header">id_sms</f:facet>
+                    <h:outputText value="#{t.id_sms}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">state</f:facet>
+                    <h:outputText value="#{t.state}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">errCde</f:facet>
+                    <h:outputText value="#{t.errCde}"/>
+                </p:column>
+
+                <p:column width="100">
+                    <f:facet name="header">inSms</f:facet>
+                    <h:outputText value="#{t.inSms}"/>
+                </p:column>
+
+                <p:column width="100">
+                    <f:facet name="header">parsedSms</f:facet>
+                    <h:outputText value="#{t.parsedSms}"/>
+                </p:column>
+
+                <p:column width="160">
+                    <f:facet name="header">outSms</f:facet>
+                    <h:outputText value="#{t.outSms}"/>
+                </p:column>
+
+                <p:column width="150">
+                    <f:facet name="header">panid</f:facet>
+                    <h:outputText value="#{t.panid}"/>
+                </p:column>
+
+                <p:column width="120">
+                    <f:facet name="header">phone</f:facet>
+                    <h:outputText value="#{t.phone}"/>
+                </p:column>
+
+                <p:column width="120">
+                    <f:facet name="header">smsDate</f:facet>
+                    <h:outputText value="#{t.smsDate}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">origIdSms</f:facet>
+                    <h:outputText value="#{t.originalIdSms}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">fiid</f:facet>
+                    <h:outputText value="#{t.fiid}"/>
+                </p:column>
+
+                <p:column width="120">
+                    <f:facet name="header">account</f:facet>
+                    <h:outputText value="#{t.account}"/>
+                </p:column>
+
+                <p:column width="20">
+                    <f:facet name="header">cardStat</f:facet>
+                    <h:outputText value="#{t.cardStat}"/>
+                </p:column>
+
+                <p:column width="40"><f:facet name="header">expdate</f:facet>
+                    <h:outputText value="#{t.expdate}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">oprtnCde</f:facet>
+                    <h:outputText value="#{t.oprtnCde}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">flId</f:facet>
+                    <h:outputText value="#{t.flId}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">mbr</f:facet>
+                    <h:outputText value="#{t.mbr}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">newCardStat</f:facet>
+                    <h:outputText value="#{t.newCardStat}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">fhmRespCde</f:facet>
+                    <h:outputText value="#{t.fhmRespCde}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">accountType</f:facet>
+                    <h:outputText value="#{t.accountType}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">panCr</f:facet>
+                    <h:outputText value="#{t.panCr}"/>
+                </p:column>
+
+                <p:column width="140">
+                    <f:facet name="header">waitUntil</f:facet>
+                    <h:outputText value="#{t.waitUntil}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">attempt</f:facet>
+                    <h:outputText value="#{t.attempt}"/>
+                </p:column>
+
+                <p:column width="160">
+                    <f:facet name="header">panmask</f:facet>
+                    <h:outputText value="#{t.panmask}"/>
+                </p:column>
+
+                <p:column width="40">
+                    <f:facet name="header">opExtractCode</f:facet>
+                    <h:outputText value="#{t.operationExtractCode}"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:dialog id="dlg" header="MBanking_SMS Info" widgetVar="mbankingsmsTableDialog" modal="false" showEffect="fade"
+                      hideEffect="fade" resizable="false" closable="true"
+                      closeOnEscape="true" >
+                <p:outputPanel id="mbankingsmsTableDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty mbankingsmsview.mbankingSmsList}" >
+                        <f:facet name="header">
+                            <h:outputText value="Details of MBankingSMS: #{mbankingsmsview.concreeteMbankingSms.id_sms}" />
+                        </f:facet>
+                        <h:outputText value="PHONE:" />
+                        <h:outputText value="#{mbankingsmsview.concreeteMbankingSms.phone}" />
+                        <h:outputText value="PANMASK:" />
+                        <h:outputText value="#{mbankingsmsview.concreeteMbankingSms.panmask}" />
+                        <h:outputText value="OUT_SMS:" />
+                        <h:outputText value="#{mbankingsmsview.concreeteMbankingSms.outSms}" />
+                        <h:outputText value="PANCr:" />
+                        <h:outputText value="#{mbankingsmsview.concreeteMbankingSms.panCr}" />
+                    </p:panelGrid>
+                    <p:commandButton value="Close" ajax="false" onclick="dlg.close()" immediate="true"/>
+                </p:outputPanel>
+            </p:dialog>
+
+            <p:panelGrid columns="4" style="text-align: center; margin:0 auto;">
+                <p:commandButton value="Prev" action="#{mbankingsmsview.getPreviousPage}" ajax="false" icon="ui-icon-circle-triangle-w"></p:commandButton>
+                <h:inputText value="#{mbankingsmsview.pageNumber}" style="text-align: center;"></h:inputText>
+                <p:commandButton value="Next" action="#{mbankingsmsview.getNextPage}" ajax="false" icon="ui-icon-circle-triangle-e"></p:commandButton>
+                <h:outputLabel value="MaxPageNumber: ">#{mbankingsmsview.maxPageNumber}</h:outputLabel>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

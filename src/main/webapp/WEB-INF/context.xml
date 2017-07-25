@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/MBankingServer">
+	<Resource
+			name="jdbc/infra"
+			auth="Container"
+			driverClassName="oracle.jdbc.OracleDriver"
+			logAbandoned="true"
+			maxActive="20"
+			maxIdle="0"
+			maxWait="3000"
+			removeAbandoned="true"
+			removeAbandonedTimeout="60"
+			testOnBorrow="true"
+			testOnCreate="true"
+			testOnReturn="true"
+			testWhileIdle="true"
+			type="javax.sql.DataSource"
+			url="jdbc:oracle:thin:@//test:1521/testrkc"
+			username="sa"			
+			password="123456"
+			/>
+</Context>

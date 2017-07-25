@@ -1,0 +1,24 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <p:panelGrid columns="2">
+        <h:outputLabel style="color: #e5f1dd; font-size: 12px; font-weight: 700">You are logged like:</h:outputLabel>
+        <h:outputLabel
+                style="color: #1fae1d; font-size: 12px; font-weight: 700">#{loginView.applicationUser.formatedName}</h:outputLabel>
+    </p:panelGrid>
+    <h:form>
+        <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
+            <h:commandLink action="#{languageSwitcher.ukrainianAction()}">
+                <h:graphicImage library="icons" name="ua32.png" style="border: 0px"/>
+            </h:commandLink>
+            <h:commandLink action="#{languageSwitcher.englishAction()}">
+                <h:graphicImage library="icons" name="usa32.png" style="border: 0px"/>
+            </h:commandLink>
+            <h:commandLink action="#{languageSwitcher.russianAction()}">
+                <h:graphicImage library="icons" name="ru32.png" style="border: 0px"/>
+            </h:commandLink>
+        </h:panelGrid>
+    </h:form>
+</ui:composition>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/loginLayout.xhtml" xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="windowTitle">
+        <h:outputText value="#{msg['login_title_mess']}" />
+    </ui:define>
+    <ui:define name="header">
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="loginForm">
+            <h:messages styleClass="error-class"></h:messages>
+            <p:growl id="msg" showDetail="true" life="3000" />
+            <!--<p:panel header="Login" styleClass="panel-style-class">-->
+            <p:panel header="#{msg['login_form_header_mess']}" styleClass="panel-style-class">
+                <h:panelGrid id="loginPanel" columns="2" style="width: 360px;">
+                    <h:outputText value="#{msg['login_form_username_mess']}" />
+                    <p:inputText id="username" value="#{loginView.username}" required="true">
+                        <f:validateLength minimum="3" maximum="20" ></f:validateLength>
+                    </p:inputText>
+                    <p:spacer/>
+                    <p:message for="username" />
+                    <h:outputText value="Логин" />
+                    <p:password id="password" value="#{loginView.password}"  feedback="false" required="true"/>
+                    <p:spacer/>
+                    <p:message for="password"/>
+                    <p:spacer/>
+                    <p:commandButton action="#{loginView.login()}" value="#{msg['login_button_mess']}" update="loginForm" />
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
